@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D'SIX CANTEEN</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  </link>
+  <style type="text/tailwindcss">
+    :root {
+      --primary: #E35D23;
+      /* Oranye Logo */
+      --secondary: #432818;
+      /* Cokelat Logo */
+      --bg-soft: #FFF9F5;
+      /* Putih Gading Soft */
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg-soft);
+      color: var(--secondary);
+    }
+
+    .bg-primary {
+      background-color: var(--primary);
+    }
+
+    .color-primary {
+      color: var(--primary);
+    }
+
+    .bg-secondary {
+      background-color: var(--secondary);
+    }
+
+    .text-primary {
+      color: var(--primary);
+    }
+
+    .border-primary {
+      border-color: var(--primary);
+    }
+
+    .bg-dark {
+      background-color: var(--secondary);
+    }
+
+    .btn-hover:hover {
+      transform: translateY(-2px);
+      transition: 0.3s;
+    }
+
+    .bawah::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      width: 100%;
+      background: var(--secondary);
+      transform: scale(0);
+      transform-origin: center;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .bawah:hover::after {
+      transform: scaleX(1);
+    }
+
+    .btn-animasi {
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      transition: 0.5s ease-in-out;
+    }
+
+    .btn-animasi::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      z-index: 0;
+      background-color: var(--primary);
+      transform: translate(-50%, 50%) scale(0);
+      transition: transform 0.5s ease-in-out;
+      z-index: 0;
+    }
+
+    .btn-animasi:hover {
+      color: #fff;
+    }
+
+    .btn-animasi:hover::before {
+    transform: translate(-50%, 50%) scale(2);
+    }
+
+    #scroll {
+      scrollbar-width: none;
+    }
+
+    .animasi-naik:hover {
+    transform: translateY(-10px);
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav
+    class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-orange-100 py-4 px-6 md:px-12 flex justify-between items-center shadow-sm">
+    <div class="flex items-center gap-2">
+      <div class="w-15 h-10 flex items-center justify-center text-[10px] text-primary font-bold"><img src="logo.png"
+          alt=""></div>
+      <span class="font-bold text-xl tracking-tight text-primary">D'SIX <span
+          class="leading-light ">CANTEEN</span></span>
+    </div>
+    <div class="hidden md:flex gap-8 font-medium">
+      <a href="#home" class="hover:text-primary bawah relative font-semibold">Home</a>
+      <a href="#order" class="hover:text-primary relative bawah font-semibold">Order</a>
+      <a href="#tentang" class="hover:text-primary bawah relative font-semibold">Tentang</a>
+      <a href="#kontak" class="hover:text-primary relative bawah font-semibold">Hubungi Kami</a>
+    </div>
+  </nav>
+
+  <section id="home" class="px-6 md:px-12 py-12 md:py-20 flex flex-col md:flex-row items-center gap-10">
+    <div class="md:w-1/2">
+      <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6">Eat Good <br><span class="text-primary">
+          Think Good</span></h1>
+      <p class="text-lg opacity-80 mb-8">Pesan makanan favoritmu dari ruang teori sekarang, ambil atau diantar langsung
+        ke kelas. Lebih cepat, lebih santuy!</p>
+      <a href="#order"
+        class="bg-primary text-white px-8 py-4 rounded-xl font-bold btn-hover inline-block shadow-lg shadow-orange-300">Pesan
+        Sekarang</a>
+    </div>
+    <div class="md:w-1/2 overflow-hidden rounded-3xl border-8 border-white shadow-2xl">
+      <div id="heroSlider" class="flex transition-transform duration-700">
+        <img src="mie-ayam.jpg" class="w-full flex-shrink-0 object-cover">
+        <img src="bakso-daging.jpg" class="w-full flex-shrink-0 object-cover">
+        <img src="es-teh.jpg" class="w-full flex-shrink-0 object-cover">
+      </div>
+    </div>
+  </section>
+
+  <section id="order" class="px-6 md:px-12 pt-16 pb-10 bg-white">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold mb-2">Menu Terpopuler</h2>
+      <p class="opacity-60">Pilih makananmu dan isi form untuk kirim ke WhatsApp kantin.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div
+        class="animasi-naik hover:shadow-2xl duration-300 bg-white border border-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all p-4 group">
+        <div class="h-48 overflow-hidden rounded-xl mb-4">
+          <img src="bakso-daging.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+        </div>
+        <h3 class="font-bold text-xl mb-1">Bakso Daging</h3>
+        <p class="text-sm">Bakso, Sayur, Pangsit</p>
+        <p class="text-primary font-bold mb-4">Rp 7.000</p>
+        <button onclick="openModal('Bakso Daging', 7000)"
+          class="w-full py-3 border-2 border-primary text-primary font-bold rounded-lg hover:bg-primary hover:text-white transition btn-animasi relative overflow-hidden"><span
+            class="z-2 relative">Pilih
+            Menu</span></button>
+      </div>
+      <div
+        class="animasi-naik hover:shadow-2xl duration-300 bg-white border border-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all p-4 group">
+        <div class="h-48 overflow-hidden rounded-xl mb-4">
+          <img src="es-teh.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+        </div>
+        <h3 class="font-bold text-xl mb-1">Es Teh</h3>
+        <p class="text-sm">Es Teh</p>
+        <p class="text-primary font-bold mb-4">Rp 2.000</p>
+        <button onclick="openModal('Es Teh', 2000)"
+          class="w-full py-3 border-2 border-primary text-primary font-bold rounded-lg hover:bg-primary hover:text-white transition btn-animasi relative overflow-hidden"><span
+            class="z-10 relative">Pilih
+            Menu</span></button>
+      </div>
+      <div
+        class="animasi-naik hover:shadow-2xl duration-300 bg-white border border-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all p-4 group">
+        <div class="h-48 overflow-hidden rounded-xl mb-4">
+          <img src="mie-ayam.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+        </div>
+        <h3 class="font-bold text-xl mb-1">Mie Ayam</h3>
+        <p class="text-sm">Mie, Ayam, Sayur, Pentol</p>
+        <p class="text-primary font-bold mb-4">Rp 6.000</p>
+        <button onclick="openModal('Mie Ayam', 6000)"
+          class="w-full py-3 border-2 border-primary text-primary font-bold rounded-lg hover:bg-primary hover:text-white transition btn-animasi relative overflow-hidden"><span
+            class="z-10 relative">Pilih
+            Menu</span></button>
+      </div>
+    </div>
+
+    <div class="text-right w-full mt-10 pr-6">
+      <a href="#" class="text-lg text-primary relative tracking-wide border-b-1">Lihat Selengkapnya <span
+          class="absolute -right-[20px]">-></span></a>
+    </div>
+
+  </section>
+
+  <section id="tentang" class="py-24 bg-orange-50/50 relative overflow-hidden">
+    <div class="absolute -top-20 -left-20 w-64 h-64 bg-orange-200/30 rounded-full blur-3xl"></div>
+    <div class="absolute top-1/2 -right-20 w-80 h-80 bg-primary/10 rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-20 left-1/3 w-40 h-40 bg-orange-300/20 rounded-full blur-2xl"></div>
+
+    <div class="container mx-auto px-6 md:px-12 relative z-10">
+      <div class="text-center mb-16">
+        <h3 class="text-4xl font-bold text-secondary mb-2">Kenapa <span
+            class="text-primary text-5xl block md:inline italic">D'SIX CANTEEN?</span></h3>
+        <div class="w-24 h-1.5 bg-primary mx-auto rounded-full mt-4"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+        <div
+          class="bg-white/70 backdrop-blur-md p-8 rounded-3xl border border-white shadow-xl hover:shadow-orange-200/50 transition-all duration-500 group hover:-translate-y-2">
+          <div
+            class="w-16 h-16 bg-gradient-to-br from-orange-400 to-primary rounded-2xl flex items-center justify-center mb-6 shadow-lg rotate-3 group-hover:rotate-12 transition-transform">
+            <i class="fas fa-bolt text-2xl text-white"></i>
+          </div>
+          <h5 class="font-bold text-xl mb-3 text-secondary">Real-Time Order</h5>
+          <p class="text-slate-600 leading-relaxed text-sm">
+            Pesanan masuk seketika ke dapur kantin. Nggak pake lama, nggak pake antre panjang lagi.
+          </p>
+        </div>
+
+        <div
+          class="bg-white/70 backdrop-blur-md p-8 rounded-3xl border border-white shadow-xl hover:shadow-orange-200/50 transition-all duration-500 group hover:-translate-y-2">
+          <div
+            class="w-16 h-16 bg-gradient-to-br from-orange-400 to-primary rounded-2xl flex items-center justify-center mb-6 shadow-lg -rotate-3 group-hover:rotate-0 transition-transform">
+            <i class="fas fa-mobile-alt text-2xl text-white"></i>
+          </div>
+          <h5 class="font-bold text-xl mb-3 text-secondary">Simpel & Nyaman</h5>
+          <p class="text-slate-600 leading-relaxed text-sm">
+            Tampilan bersih dan gampang dipake. Mau pesen sambil dengerin guru di kelas juga bisa!
+          </p>
+        </div>
+
+        <div
+          class="bg-white/70 backdrop-blur-md p-8 rounded-3xl border border-white shadow-xl hover:shadow-orange-200/50 transition-all duration-500 group hover:-translate-y-2">
+          <div
+            class="w-16 h-16 bg-gradient-to-br from-orange-400 to-primary rounded-2xl flex items-center justify-center mb-6 shadow-lg rotate-6 group-hover:rotate-12 transition-transform">
+            <i class="fa-regular fa-clock text-2xl text-white"></i>
+          </div>
+          <h5 class="font-bold text-xl mb-3 text-secondary">Hemat Waktu</h5>
+          <p class="text-slate-600 leading-relaxed text-sm">
+            Istirahat cuma sebentar? Tenang, pesen dulu, pas bel bunyi tinggal meluncur ambil makanan.
+          </p>
+        </div>
+
+        <div
+          class="bg-white/70 backdrop-blur-md p-8 rounded-3xl border border-white shadow-xl hover:shadow-orange-200/50 transition-all duration-500 group hover:-translate-y-2">
+          <div
+            class="w-16 h-16 bg-gradient-to-br from-orange-400 to-primary rounded-2xl flex items-center justify-center mb-6 shadow-lg -rotate-6 group-hover:rotate-0 transition-transform">
+            <i class="fa-solid fa-tags text-2xl text-white"></i>
+          </div>
+          <h5 class="font-bold text-xl mb-3 text-secondary">Harga Kantin</h5>
+          <p class="text-slate-600 leading-relaxed text-sm">
+            Harga di aplikasi sama persis kayak harga beli langsung. No admin fee, no tipu-tipu!
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+  <hr class="border-dashed border-1 color-primary">
+
+  <section id="rating" class="px-6 md:px-12 py-20 bg-gradient-to-b from-white to-orange-50 relative overflow-hidden">
+    <div class="absolute top-10 right-10 text-orange-200/20">
+      <i class="fas fa-quote-right text-9xl"></i>
+    </div>
+
+    <div class="text-center mb-12 relative z-10">
+      <span
+        class="bg-orange-100 text-primary px-4 py-1 rounded-full text-sm font-bold tracking-widest uppercase">Testimoni</span>
+      <h2 class="text-3xl md:text-4xl font-bold mt-4 text-secondary">Apa Kata Teman-Teman?</h2>
+      <p class="text-slate-500 mt-2">Dengerin jujur-jujuran dari mereka yang udah nyobain.</p>
+    </div>
+
+    <div id="scroll" class="overflow-x-auto pb-8 snap-x snap-mandatory">
+      <div class="flex gap-6 w-max px-4">
+
+        <div
+          class="snap-center bg-white border border-orange-100 rounded-3xl shadow-xl shadow-orange-200/30 w-[320px] md:w-[400px] p-8 transition-transform duration-300 hover:scale-[1.02]">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="relative">
+              <img src="pp.jpg" alt="pp" class="w-14 h-14 rounded-2xl object-cover border-1 border-primary/20">
+              <div
+                class="absolute -bottom-2 -right-2 bg-primary text-white w-6 h-6 rounded-full flex items-center justify-center text-[10px]">
+                <i class="fas fa-check"></i>
+              </div>
+            </div>
+            <div>
+              <h4 class="font-bold text-secondary text-lg leading-none">Siswa</h4>
+              <div class="flex text-orange-400 text-xs mt-2">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                  class="fas fa-star"></i><i class="fas fa-star"></i>
+              </div>
+            </div>
+          </div>
+          <p class="text-slate-600 italic leading-relaxed">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta sed enim rem odit dolores. Neque.
+          </p>
+        </div>
+
+        <div
+          class="snap-center bg-white border border-orange-100 rounded-3xl shadow-xl shadow-orange-200/30 w-[320px] md:w-[400px] p-8 transition-transform duration-300 hover:scale-[1.02]">
+          <div class="flex items-center gap-4 mb-6">
+            <img src="pp.jpg" alt="pp" class="w-14 h-14 rounded-2xl object-cover border-1 border-primary/20">
+            <div>
+              <h4 class="font-bold text-secondary text-lg leading-none">Siswa</h4>
+              <div class="flex text-orange-400 text-xs mt-2">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                  class="fas fa-star"></i><i class="fas fa-star"></i>
+              </div>
+            </div>
+          </div>
+          <p class="text-slate-600 italic leading-relaxed">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse odio reprehenderit, tempore doloremque
+            facilis dignissimos!
+          </p>
+        </div>
+
+        <div
+          class="snap-center bg-white border border-orange-100 rounded-3xl shadow-xl shadow-orange-200/30 w-[320px] md:w-[400px] p-8 transition-transform duration-300 hover:scale-[1.02]">
+          <div class="flex items-center gap-4 mb-6">
+            <img src="pp.jpg" alt="pp" class="w-14 h-14 rounded-2xl object-cover border-1 border-primary/20">
+            <div>
+              <h4 class="font-bold text-secondary text-lg leading-none">Siswa</h4>
+              <div class="flex text-orange-400 text-xs mt-2">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                  class="fas fa-star"></i><i class="fas fa-star"></i>
+              </div>
+            </div>
+          </div>
+          <p class="text-slate-600 italic leading-relaxed">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum aspernatur, accusamus deleniti eaque quis
+            reprehenderit?
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="kontak" class="px-6 md:px-12 py-16">
+    <div class="bg-dark rounded-3xl p-8 md:p-12 text-white flex flex-col md:flex-row gap-10">
+      <div class="md:w-1/2">
+        <h2 class="text-3xl font-bold mb-4 text-orange-400">Ada Saran, Kritik atau Kendala?</h2>
+        <p class="text-orange-100/60">Kirimkan pesanmu langsung ke admin kami melalui email form ini.</p>
+      </div>
+      <form class="md:w-1/2 flex flex-col gap-4">
+        <input type="email" placeholder="Email"
+          class="bg-white/10 border border-white/20 p-4 rounded-xl focus:outline-none focus:border-primary" required>
+        <textarea placeholder="Pesan..."
+          class="bg-white/10 border border-white/20 p-4 rounded-xl h-32 focus:outline-none focus:border-primary"
+          required></textarea>
+        <button type="submit" class="bg-primary py-4 rounded-xl font-bold hover:bg-orange-600 transition">Kirim
+          Pesan</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="py-10 text-center opacity-50 text-sm">
+    <p>&copy; 2026 D'SIX CANTEEN SMK. Developed with by ALIF AQIL AZIZI.</p>
+  </footer>
+
+  <div id="menu" class="hidden bg-black/50 fixed inset-0 z-[100] p-4 flex items-center justify-center">
+    <div class="bg-white w-full max-w-md rounded-3xl p-8 shadow-2xl gap-6 h-70 max-w-120">
+      <div class="flex justify-between w-full">
+        <h2 class="text-primary text-2xl font-bold">Menu</h2>
+        <input type="text" id="search" placeholder="Cari Menu" class="outline-none border-b-1 w-50">
+      </div>
+      <div class="grid grid-cols-3 mt-5 h-full w-full">
+
+        <div class="h-40 w-40 bg-white shadow-2xl rounded-md overflow-hidden">
+          <img src="bakso-daging.jpg" alt="">
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="orderModal" class="fixed inset-0 bg-black/50 z-[100] hidden flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-md rounded-3xl p-8 shadow-2xl relative">
+      <button onclick="closeModal()" class="absolute top-4 right-4 text-2xl">&times;</button>
+      <h2 id="modalTitle" class="text-2xl font-bold mb-1 text-primary">Nama Menu</h2>
+      <p class="text-sm opacity-50 mb-6">Lengkapi data untuk memesan</p>
+
+      <div class="space-y-4">
+        <input type="text" id="custName" placeholder="Nama Lengkap"
+          class="w-full p-3 border border-gray-200 rounded-lg focus:border-primary outline-none">
+        <div class="grid grid-cols-2 gap-4">
+          <input type="text" id="custClass" placeholder="Kelas & Jurusan"
+            class="w-full p-3 border border-gray-200 rounded-lg focus:border-primary outline-none">
+          <input type="text" id="custRoom" placeholder="Ruang Teori"
+            class="w-full p-3 border border-gray-200 rounded-lg focus:border-primary outline-none">
+        </div>
+        <select id="custMethod" class="w-full p-3 border border-gray-200 rounded-lg focus:border-primary outline-none">
+          <option value="Ambil Sendiri">Ambil Sendiri</option>
+          <option value="Diantar">Diantar ke Kelas</option>
+        </select>
+
+        <div class="flex items-center justify-between py-4 border-y border-gray-100">
+          <span class="font-bold">Jumlah (Maks 10)</span>
+          <div class="flex items-center gap-4">
+            <button onclick="changeQty(-1)"
+              class="w-8 h-8 rounded-full border border-primary text-primary font-bold">-</button>
+            <span id="qtyVal" class="font-bold">1</span>
+            <button onclick="changeQty(1)" class="w-8 h-8 rounded-full bg-primary text-white font-bold">+</button>
+          </div>
+        </div>
+
+        <div class="">
+          <h2 class="font-light text-md text-slate-800">Note untuk metode antar*</h2>
+          <ul class="list-disc font-extralight text-sm text-slate-800">
+            <li>Pesanan akan di antar sewaktu jam istirahat</li>
+          </ul>
+        </div>
+
+        <div class="flex justify-between items-center mb-6">
+          <span class="opacity-60 font-medium text-lg">Total Harga</span>
+          <span id="totalPrice" class="text-2xl font-bold text-primary">Rp 0</span>
+        </div>
+
+        <button onclick="sendWA()"
+          class="w-full bg-green-500 text-white py-4 rounded-xl font-bold hover:bg-green-600 flex items-center justify-center gap-2">
+          <img src="wa.png" class="w-5 h-5"> Kirim ke WhatsApp
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentMenu = "";
+    let currentPrice = 0;
+    let qty = 1;
+
+    function openModal(name, price) {
+      currentMenu = name;
+      currentPrice = price;
+      qty = 1;
+      document.getElementById('modalTitle').innerText = name;
+      document.getElementById('orderModal').classList.remove('hidden');
+      updateUI();
+    }
+
+    function closeModal() {
+      document.getElementById('orderModal').classList.add('hidden');
+    }
+
+    function changeQty(n) {
+      qty += n;
+      if (qty < 1) qty = 1;
+      if (qty > 10) qty = 10;
+      updateUI();
+    }
+
+    function updateUI() {
+      document.getElementById('qtyVal').innerText = qty;
+      const total = currentPrice * qty;
+      document.getElementById('totalPrice').innerText = "Rp " + total.toLocaleString();
+    }
+
+    function sendWA() {
+      const name = document.getElementById('custName').value;
+      const kelas = document.getElementById('custClass').value;
+      const ruang = document.getElementById('custRoom').value;
+      const method = document.getElementById('custMethod').value;
+      const total = currentPrice * qty;
+
+      if (!name || !kelas || !ruang) {
+        alert("Woi, isi dulu datanya yang lengkap!");
+        return;
+      }
+
+      const phone = "62895388887008";
+      const message = `Halo D-SIX CANTEEN!%0A%0ASaya mau pesan :%0A----------------------------%0A *Menu:* ${currentMenu}%0A *Nama:* ${name}%0A *Kelas:* ${kelas}%0A *Lokasi:* ${ruang}%0A *Metode:* ${method}%0A *Jumlah:* ${qty}%0A----------------------------%0A *Total Harga:* Rp ${total.toLocaleString()}%0A%0AMohon segera diproses ya, terima kasih!`;
+
+      window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+    }
+
+    let slideIndex = 0;
+
+    function autoSlide() {
+      const slider = document.getElementById("heroSlider");
+      const totalSlides = slider.children.length;
+
+      slideIndex++;
+      if (slideIndex >= totalSlides) {
+        slideIndex = 0;
+      }
+
+      slider.style.transform = `translateX(-${slideIndex * 100}%)`;
+    }
+
+    setInterval(autoSlide, 3000); // ganti tiap 3 detik
+  </script>
+</body>
+
+</html>
