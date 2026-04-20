@@ -1,0 +1,1836 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D'SIX CANTEEN</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+    rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --fire: #E84B1A;
+      --fire-deep: #B83410;
+      --cream: #FAF6EE;
+      --ink: #1A1410;
+      --ink-mid: #3D2B1F;
+      --muted: #9B8577;
+      --white: #FFFFFF;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--ink);
+      color: var(--cream);
+      overflow-x: hidden;
+    }
+
+    h1,
+    h2,
+    h3,
+    .brand {
+      font-family: 'Unbounded', sans-serif;
+    }
+
+    /* ═══════════════════════════════
+       NAV — mobile
+    ═══════════════════════════════ */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(26, 20, 16, 0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+    }
+
+    .brand {
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      color: var(--cream);
+    }
+
+    .brand span {
+      color: var(--fire);
+    }
+
+    /* Desktop nav links — hidden on mobile */
+    .nav-links {
+      list-style: none;
+      display: none;
+      gap: 32px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--cream);
+    }
+
+    .nav-cta {
+      background: var(--fire) !important;
+      color: #fff !important;
+      padding: 9px 20px;
+      border-radius: 100px;
+    }
+
+    .nav-cta:hover {
+      background: var(--fire-deep) !important;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: 4px;
+      min-width: 44px;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--cream);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* Mobile drawer */
+    .mobile-menu {
+      position: fixed;
+      top: 65px;
+      left: 0;
+      right: 0;
+      background: rgba(26, 20, 16, 0.98);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 0 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s;
+      z-index: 99;
+    }
+
+    .mobile-menu.open {
+      max-height: 300px;
+      padding: 16px 20px 24px;
+    }
+
+    .mobile-menu a {
+      display: block;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--muted);
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      transition: color 0.2s;
+    }
+
+    .mobile-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .mobile-menu a:hover,
+    .mobile-menu a:active {
+      color: var(--fire);
+    }
+
+    .mobile-menu-cta {
+      display: block !important;
+      background: var(--fire);
+      color: #fff !important;
+      text-align: center;
+      padding: 14px !important;
+      border-radius: 12px;
+      margin-top: 12px;
+      font-family: 'Unbounded', sans-serif;
+      font-size: 13px !important;
+      font-weight: 700;
+      border-bottom: none !important;
+    }
+
+    /* ═══════════════════════════════
+       HERO
+    ═══════════════════════════════ */
+    #home {
+      padding: 80px 20px 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg-circle {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(232, 75, 26, 0.15) 0%, transparent 70%);
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(232, 75, 26, 0.15);
+      border: 1px solid rgba(232, 75, 26, 0.3);
+      color: var(--fire);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 7px 14px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+      width: fit-content;
+    }
+
+    .hero-tag::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--fire);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.5;
+        transform: scale(1.4);
+      }
+    }
+
+    .hero-title {
+      font-size: clamp(34px, 9vw, 72px);
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .hero-title .accent {
+      color: var(--fire);
+      display: block;
+    }
+
+    .hero-desc {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn-primary {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--fire);
+      color: #fff;
+      font-family: 'Unbounded', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 16px 24px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: transform 0.2s, background 0.2s;
+      border: none;
+      cursor: pointer;
+      min-height: 52px;
+    }
+
+    .btn-primary:hover {
+      background: var(--fire-deep);
+    }
+
+    .btn-primary:active {
+      transform: scale(0.97);
+    }
+
+    .btn-ghost {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 14px;
+      text-decoration: none;
+      padding: 12px;
+      transition: color 0.2s;
+      min-height: 44px;
+    }
+
+    .btn-ghost:hover {
+      color: var(--cream);
+    }
+
+    /* Slider */
+    .hero-visual {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-slider-wrap {
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      position: relative;
+    }
+
+    .hero-slider-track {
+      display: flex;
+      transition: transform 0.8s cubic-bezier(0.77, 0, 0.18, 1);
+      height: 100%;
+    }
+
+    .hero-slider-track img {
+      width: 100%;
+      flex-shrink: 0;
+      object-fit: cover;
+    }
+
+    .slider-dots {
+      display: flex;
+      gap: 8px;
+      margin-top: 14px;
+      justify-content: center;
+    }
+
+    .slider-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.2);
+      transition: all 0.3s;
+      cursor: pointer;
+      min-width: 6px;
+    }
+
+    .slider-dot.active {
+      width: 24px;
+      background: var(--fire);
+    }
+
+    .hero-badge {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      background: rgba(26, 20, 16, 0.92);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-badge-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--fire);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .hero-badge-num {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--cream);
+    }
+
+    .hero-badge-text {
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    /* ═══════════════════════════════
+       TICKER
+    ═══════════════════════════════ */
+    .ticker {
+      background: var(--fire);
+      padding: 12px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .ticker-inner {
+      display: inline-flex;
+      animation: ticker 18s linear infinite;
+    }
+
+    .ticker-item {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #fff;
+      padding: 0 28px;
+    }
+
+    .ticker-sep {
+      color: rgba(255, 255, 255, 0.4);
+      padding: 0;
+    }
+
+    @keyframes ticker {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* ═══════════════════════════════
+       SECTION COMMON
+    ═══════════════════════════════ */
+    .section-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--fire);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(24px, 6.5vw, 48px);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+
+    .section-sub {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+
+    /* ═══════════════════════════════
+       MENU
+    ═══════════════════════════════ */
+    #order {
+      padding: 64px 20px;
+      background: var(--ink);
+    }
+
+    .menu-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .menu-card {
+      background: var(--ink-mid);
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      transition: border-color 0.3s;
+      /* horizontal layout on mobile */
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+    }
+
+    .menu-card:active {
+      border-color: rgba(232, 75, 26, 0.4);
+    }
+
+    .menu-card-img-wrap {
+      width: 120px;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .menu-card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s;
+    }
+
+    .menu-card:hover .menu-card-img {
+      transform: scale(1.05);
+    }
+
+    .menu-card-body {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
+    }
+
+    .menu-card-name {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+
+    .menu-card-desc {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .menu-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .menu-price {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--fire);
+    }
+
+    .btn-order-sm {
+      background: var(--fire);
+      color: #fff;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 100px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+      min-height: 40px;
+      white-space: nowrap;
+    }
+
+    .btn-order-sm:active {
+      background: var(--fire-deep);
+      transform: scale(0.97);
+    }
+
+    .menu-more {
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    .menu-more a {
+      font-size: 14px;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(155, 133, 119, 0.3);
+      padding-bottom: 2px;
+    }
+
+    /* ═══════════════════════════════
+       FITUR
+    ═══════════════════════════════ */
+    #tentang {
+      padding: 64px 20px;
+      background: var(--cream);
+      color: var(--ink);
+    }
+
+    #tentang .section-label {
+      color: var(--fire);
+    }
+
+    #tentang .section-title {
+      color: var(--ink);
+    }
+
+    #tentang .section-sub {
+      color: #7a6255;
+    }
+
+    .fitur-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .fitur-card {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 20px 18px;
+      border: 1px solid rgba(26, 20, 16, 0.07);
+      transition: transform 0.3s;
+    }
+
+    .fitur-card:active {
+      transform: scale(0.98);
+    }
+
+    .fitur-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--fire);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: #fff;
+      margin-bottom: 14px;
+    }
+
+    .fitur-title {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .fitur-desc {
+      font-size: 12px;
+      color: #7a6255;
+      line-height: 1.6;
+    }
+
+    /* ═══════════════════════════════
+       STATS
+    ═══════════════════════════════ */
+    .stats-strip {
+      background: var(--fire);
+      padding: 40px 20px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(20px, 5vw, 48px);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.75);
+      margin-top: 6px;
+      line-height: 1.4;
+    }
+
+    /* ═══════════════════════════════
+       TESTIMONI
+    ═══════════════════════════════ */
+    #rating {
+      padding: 64px 20px;
+      background: var(--ink);
+    }
+
+    .testi-scroll {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding-bottom: 4px;
+      /* snap scrolling for mobile */
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .testi-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .testi-card {
+      background: var(--ink-mid);
+      border-radius: 18px;
+      padding: 22px 20px;
+      min-width: 280px;
+      max-width: 300px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      flex-shrink: 0;
+      scroll-snap-align: start;
+    }
+
+    .testi-stars {
+      color: var(--fire);
+      font-size: 12px;
+      margin-bottom: 12px;
+    }
+
+    .testi-text {
+      font-size: 13px;
+      line-height: 1.7;
+      color: #c5b5a8;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+
+    .testi-author {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .testi-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: var(--fire);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .testi-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .testi-name {
+      font-weight: 500;
+      font-size: 13px;
+    }
+
+    .testi-role {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* ═══════════════════════════════
+       KONTAK
+    ═══════════════════════════════ */
+    #kontak {
+      padding: 64px 20px;
+      background: var(--cream);
+      color: var(--ink);
+    }
+
+    #kontak .section-label {
+      color: var(--fire);
+    }
+
+    #kontak .section-title {
+      color: var(--ink);
+    }
+
+    .kontak-desc {
+      font-size: 14px;
+      color: #7a6255;
+      line-height: 1.7;
+      margin-top: 12px;
+      margin-bottom: 28px;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      background: #fff;
+      border: 1.5px solid rgba(26, 20, 16, 0.12);
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      /* prevent iOS zoom */
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--fire);
+    }
+
+    .form-group textarea {
+      height: 120px;
+      resize: none;
+    }
+
+    /* ═══════════════════════════════
+       FOOTER
+    ═══════════════════════════════ */
+    footer {
+      background: #100C09;
+      border-top: 1px solid var(--border);
+      padding: 40px 20px 28px;
+      margin-top: 20px;
+    }
+
+    .footer-top {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      margin-bottom: 32px;
+    }
+
+    .footer-brand {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      color: var(--cream);
+      margin-bottom: 10px;
+    }
+
+    .footer-brand span {
+      color: var(--fire);
+    }
+
+    .footer-tagline {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 280px;
+      margin-bottom: 18px;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 10px;
+    }
+
+    .social-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 15px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .social-btn:hover {
+      background: var(--fire);
+      border-color: var(--fire);
+      color: #fff;
+    }
+
+    .footer-col-title {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 14px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links li,
+    a {
+      text-decoration: none;
+      font-size: 13px;
+      color: var(--muted);
+      transition: color 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-links a:hover {
+      color: var(--fire);
+    }
+
+    .footer-links i {
+      font-size: 11px;
+      width: 14px;
+    }
+
+    .footer-divider {
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 20px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: center;
+      text-align: center;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .footer-copy a {
+      color: var(--fire);
+      text-decoration: none;
+    }
+
+    .footer-made {
+      font-size: 11px;
+      color: rgba(155, 133, 119, 0.45);
+    }
+
+    /* ═══════════════════════════════
+       MODAL
+    ═══════════════════════════════ */
+    #orderModal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 200;
+      display: none;
+      align-items: flex-end;
+      /* sheet from bottom on mobile */
+      justify-content: center;
+      backdrop-filter: blur(6px);
+    }
+
+    #orderModal.open {
+      display: flex;
+    }
+
+    .modal-box {
+      background: var(--ink-mid);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px 24px 0 0;
+      /* bottom sheet */
+      padding: 28px 20px 36px;
+      width: 100%;
+      max-width: 520px;
+      position: relative;
+      max-height: 92vh;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* Pull handle */
+    .modal-handle {
+      width: 36px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 2px;
+      margin: 0 auto 20px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(255, 255, 255, 0.08);
+      border: none;
+      color: var(--muted);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-title {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 4px;
+      padding-right: 40px;
+    }
+
+    .modal-sub {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 22px;
+    }
+
+    .modal-input {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      /* prevent iOS zoom */
+      color: var(--cream);
+      outline: none;
+      margin-bottom: 12px;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+    }
+
+    .modal-input:focus {
+      border-color: var(--fire);
+    }
+
+    .modal-input option {
+      background: var(--ink-mid);
+    }
+
+    .modal-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .modal-row .modal-input {
+      margin-bottom: 0;
+    }
+
+    .qty-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      margin: 4px 0 16px;
+    }
+
+    .qty-label {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .qty-ctrl {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .qty-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: transparent;
+      color: var(--cream);
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .qty-btn:active {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .qty-btn.plus {
+      background: var(--fire);
+      border-color: var(--fire);
+    }
+
+    .qty-btn.plus:active {
+      background: var(--fire-deep);
+    }
+
+    .qty-num {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      min-width: 28px;
+      text-align: center;
+    }
+
+    .modal-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+
+    .modal-total-label {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .modal-total-price {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--fire);
+    }
+
+    .btn-wa {
+      width: 100%;
+      background: #25D366;
+      color: #fff;
+      border: none;
+      padding: 18px;
+      border-radius: 14px;
+      font-family: 'Unbounded', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: background 0.2s;
+      letter-spacing: 0.03em;
+      min-height: 56px;
+    }
+
+    .btn-wa:active {
+      background: #1da854;
+      transform: scale(0.98);
+    }
+
+    /* ═══════════════════════════════
+       TABLET — 600px+
+    ═══════════════════════════════ */
+    @media (min-width: 600px) {
+      .hero-buttons {
+        flex-direction: row;
+      }
+
+      .btn-primary {
+        justify-content: center;
+      }
+
+      .menu-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .menu-card {
+        flex-direction: column;
+      }
+
+      .menu-card-img-wrap {
+        width: 100%;
+        height: 160px;
+      }
+
+      #orderModal {
+        align-items: center;
+      }
+
+      .modal-box {
+        border-radius: 24px;
+        max-width: 460px;
+      }
+
+      .footer-top {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 40px;
+      }
+
+      .footer-bottom {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+      }
+
+      footer {
+        padding: 56px 48px 32px;
+      }
+
+
+    }
+
+    /* ═══════════════════════════════
+       DESKTOP — 960px+
+    ═══════════════════════════════ */
+    @media (min-width: 960px) {
+      nav {
+        padding: 16px 48px;
+      }
+
+      .nav-logo {
+        width: 42px;
+        height: 42px;
+      }
+
+      .brand {
+        font-size: 15px;
+      }
+
+      .nav-links {
+        display: flex;
+      }
+
+      .hamburger {
+        display: none;
+      }
+
+      .mobile-menu {
+        display: none !important;
+      }
+
+      #home {
+        flex-direction: row;
+        align-items: center;
+        padding: 120px 48px 64px;
+        gap: 60px;
+        min-height: 100vh;
+      }
+
+      .hero-left {
+        flex: 1;
+      }
+
+      .hero-visual {
+        flex: 1;
+      }
+
+      .hero-title {
+        font-size: clamp(48px, 4.5vw, 76px);
+      }
+
+      .hero-desc {
+        font-size: 16px;
+      }
+
+      .hero-buttons {
+        flex-direction: row;
+      }
+
+      .btn-primary {
+        display: inline-flex;
+        justify-content: flex-start;
+      }
+
+      #order {
+        padding: 100px 48px;
+      }
+
+      .menu-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+
+      .menu-card {
+        flex-direction: column;
+      }
+
+      .menu-card-img {
+        width: 280px;
+        height: 250px;
+      }
+
+      .menu-card-img-wrap {
+        width: 100%;
+        height: auto;
+      }
+
+      #tentang {
+        padding: 100px 48px;
+      }
+
+      .fitur-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+      }
+
+      .fitur-title {
+        font-size: 14px;
+      }
+
+      .fitur-desc {
+        font-size: 14px;
+      }
+
+      .stats-strip {
+        padding: 60px 48px;
+      }
+
+      .stat-label {
+        font-size: 14px;
+      }
+
+      #rating {
+        padding: 100px 48px;
+      }
+
+      .testi-card {
+        min-width: 320px;
+        max-width: 340px;
+      }
+
+      #kontak {
+        padding: 100px 48px;
+      }
+
+      .kontak-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: start;
+      }
+
+      .kontak-desc {
+        margin-bottom: 0;
+      }
+
+      .footer-top {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 40px;
+      }
+
+      .footer-bottom {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+      }
+
+      footer {
+        padding: 56px 48px 32px;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-left">
+      <img src="logo.png" alt="Logo D'SIX" class="nav-logo">
+      <div class="brand">D'<span>SIX</span> CANTEEN</div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#order">Menu</a></li>
+      <li><a href="#tentang">Tentang</a></li>
+      <li><a href="#kontak" class="nav-cta">Hubungi Kami</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Buka menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#home" onclick="closeMobileMenu()">Home</a>
+    <a href="#order" onclick="closeMobileMenu()">Menu</a>
+    <a href="#tentang" onclick="closeMobileMenu()">Tentang</a>
+    <a href="#kontak" class="mobile-menu-cta" onclick="closeMobileMenu()">Hubungi Kami</a>
+  </div>
+
+  <!-- HERO -->
+  <section id="home">
+    <div class="hero-bg-circle"></div>
+    <div class="hero-left">
+      <div class="hero-tag">Buka Setiap Hari Sekolah</div>
+      <h1 class="hero-title">
+        Makan Enak,<br>
+        <span class="accent">Pikir Jernih.</span>
+      </h1>
+      <p class="hero-desc">Pesan dari ruang teori, ambil saat bel bunyi — atau diantar langsung ke kelasmu. Cepat,
+        murah, nggak ribet.</p>
+      <div class="hero-buttons">
+        <a href="#order" class="btn-primary"><i class="fas fa-utensils" style="font-size:13px"></i> Pesan Sekarang</a>
+        <a href="#tentang" class="btn-ghost">Kenalan dulu <i class="fas fa-arrow-right" style="font-size:12px"></i></a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-slider-wrap">
+        <div class="hero-slider-track" id="heroSlider">
+          <img src="mie-ayam.jpg" alt="Mie Ayam">
+          <img src="bakso-daging.jpg" alt="Bakso Daging">
+          <img src="es-teh.jpg" alt="Es Teh">
+        </div>
+        <div class="hero-badge">
+          <div class="hero-badge-icon">🍜</div>
+          <div>
+            <div class="hero-badge-num">3 Menu</div>
+            <div class="hero-badge-text">Mulai dari Rp 2.000</div>
+          </div>
+        </div>
+      </div>
+      <div class="slider-dots">
+        <div class="slider-dot active" onclick="goSlide(0)"></div>
+        <div class="slider-dot" onclick="goSlide(1)"></div>
+        <div class="slider-dot" onclick="goSlide(2)"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker-inner">
+      <span class="ticker-item">Real-Time Order</span><span class="ticker-item ticker-sep">✦</span>
+      <span class="ticker-item">Harga Kantin Asli</span><span class="ticker-item ticker-sep">✦</span>
+      <span class="ticker-item">No Admin Fee</span><span class="ticker-item ticker-sep">✦</span>
+      <span class="ticker-item">Antar ke Kelas</span><span class="ticker-item ticker-sep">✦</span>
+      <span class="ticker-item">Hemat Waktu Istirahat</span><span class="ticker-item ticker-sep">✦</span>
+      <span class="ticker-item">Real-Time Order</span><span class="ticker-item ticker-sep">✦</span>
+      <span class="ticker-item">Harga Kantin Asli</span><span class="ticker-item ticker-sep">✦</span>
+      <span class="ticker-item">No Admin Fee</span><span class="ticker-item ticker-sep">✦</span>
+      <span class="ticker-item">Antar ke Kelas</span><span class="ticker-item ticker-sep">✦</span>
+      <span class="ticker-item">Hemat Waktu Istirahat</span><span class="ticker-item ticker-sep">✦</span>
+    </div>
+  </div>
+
+  <!-- MENU -->
+  <section id="order">
+    <div class="section-label">Menu Kami</div>
+    <h2 class="section-title">Yang Paling<br>Banyak Dipesen</h2>
+    <p class="section-sub">Pilih, isi data, kirim ke WhatsApp — selesai.</p>
+
+    <div class="menu-grid">
+      <div class="menu-card">
+        <div class="menu-card-img-wrap">
+          <img src="bakso-daging.jpg" alt="Bakso Daging" class="menu-card-img">
+        </div>
+        <div class="menu-card-body">
+          <div>
+            <div class="menu-card-name">Bakso Daging</div>
+            <div class="menu-card-desc">Bakso · Sayur · Pangsit</div>
+          </div>
+          <div class="menu-card-footer">
+            <span class="menu-price">Rp 7.000</span>
+            <button class="btn-order-sm" onclick="openModal('Bakso Daging', 7000)">Pesan →</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <div class="menu-card-img-wrap">
+          <img src="es-teh.jpg" alt="Es Teh" class="menu-card-img">
+        </div>
+        <div class="menu-card-body">
+          <div>
+            <div class="menu-card-name">Es Teh</div>
+            <div class="menu-card-desc">Teh manis · Es batu segar</div>
+          </div>
+          <div class="menu-card-footer">
+            <span class="menu-price">Rp 2.000</span>
+            <button class="btn-order-sm" onclick="openModal('Es Teh', 2000)">Pesan →</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <div class="menu-card-img-wrap">
+          <img src="mie-ayam.jpg" alt="Mie Ayam" class="menu-card-img">
+        </div>
+        <div class="menu-card-body">
+          <div>
+            <div class="menu-card-name">Mie Ayam</div>
+            <div class="menu-card-desc">Mie · Ayam · Sayur · Pentol</div>
+          </div>
+          <div class="menu-card-footer">
+            <span class="menu-price">Rp 6.000</span>
+            <button class="btn-order-sm" onclick="openModal('Mie Ayam', 6000)">Pesan →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-more"><a href="menu.html">Lihat semua menu →</a></div>
+  </section>
+
+  <!-- FITUR -->
+  <section id="tentang">
+    <div class="section-label">Kenapa D'SIX?</div>
+    <h2 class="section-title">Dibuat untuk<br>Kamu yang Sibuk</h2>
+    <p class="section-sub">Nggak sempat antre? Serahin ke kami.</p>
+
+    <div class="fitur-grid">
+      <div class="fitur-card">
+        <div class="fitur-icon"><i class="fas fa-bolt"></i></div>
+        <div class="fitur-title">Real-Time Order</div>
+        <div class="fitur-desc">Pesanan masuk seketika ke dapur. Nggak pake lama, nggak pake antre panjang lagi.</div>
+      </div>
+      <div class="fitur-card">
+        <div class="fitur-icon"><i class="fas fa-mobile-alt"></i></div>
+        <div class="fitur-title">Simpel & Nyaman</div>
+        <div class="fitur-desc">Tampilan bersih dan gampang dipakai. Mau pesen sambil dengerin guru juga bisa!</div>
+      </div>
+      <div class="fitur-card">
+        <div class="fitur-icon"><i class="far fa-clock"></i></div>
+        <div class="fitur-title">Hemat Waktu</div>
+        <div class="fitur-desc">Istirahat cuma sebentar? Pesen dulu, pas bel bunyi tinggal meluncur ambil makanan.</div>
+      </div>
+      <div class="fitur-card">
+        <div class="fitur-icon"><i class="fas fa-tags"></i></div>
+        <div class="fitur-title">Harga Kantin</div>
+        <div class="fitur-desc">Harga di aplikasi sama persis kayak beli langsung. No admin fee, no tipu-tipu!</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-strip">
+    <div class="stat-item">
+      <div class="stat-num">500+</div>
+      <div class="stat-label">Pesanan Terproses</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">3 Mnt</div>
+      <div class="stat-label">Rata-rata Waktu Pesan</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Harga Transparan</div>
+    </div>
+  </div>
+
+  <!-- TESTIMONI -->
+  <section id="rating">
+    <div class="section-label">Testimoni</div>
+    <h2 class="section-title">Kata Teman-Teman</h2>
+    <p class="section-sub" style="margin-bottom:28px">Jujur-jujuran dari yang udah nyobain.</p>
+
+    <div class="testi-scroll">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, accusamus possimus
+          totam voluptatem veritatis obcaecati."</p>
+        <div class="testi-author">
+          <div class="testi-avatar"><img src="pp.jpg" alt="siswa"></div>
+          <div>
+            <div class="testi-name">Aril</div>
+            <div class="testi-role">Siswa</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste, error enim maxime unde
+          obcaecati iure."</p>
+        <div class="testi-author">
+          <div class="testi-avatar"><img src="pp.jpg" alt="siswa"></div>
+          <div>
+            <div class="testi-name">Bayu</div>
+            <div class="testi-role">Siswa</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum nobis quasi iste,
+          sapiente repudiandae aperiam!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar"><img src="pp.jpg" alt="siswa"></div>
+          <div>
+            <div class="testi-name">Bu. Erni</div>
+            <div class="testi-role">Guru</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis mollitia beatae
+          facilis soluta possimus expedita."</p>
+        <div class="testi-author">
+          <div class="testi-avatar"><img src="pp.jpg" alt="siswa"></div>
+          <div>
+            <div class="testi-name">Zidan</div>
+            <div class="testi-role">Siswa</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAK -->
+  <section id="kontak">
+    <div class="kontak-inner">
+      <div>
+        <div class="section-label">Kontak</div>
+        <h2 class="section-title">Ada Saran<br>atau Kendala?</h2>
+        <p class="kontak-desc">Kirimkan pesanmu langsung ke admin kami. Kritik dan saran sangat kami terima untuk terus
+          berkembang.</p>
+      </div>
+      <div>
+        <div class="form-group"><input type="email" placeholder="Alamat email kamu"></div>
+        <div class="form-group"><textarea placeholder="Tulis pesanmu di sini..."></textarea></div>
+        <button class="btn-primary" style="width:100%; justify-content:center; border-radius:14px; font-size:13px;">
+          <i class="fas fa-paper-plane" style="font-size:13px"></i> Kirim Pesan
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand-block">
+        <div class="footer-brand">D'<span>SIX</span> CANTEEN</div>
+        <p class="footer-tagline">Kantin digital SMKN 6 Jember — pesan cepat, harga jujur, tanpa antre panjang.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/smkn6jember_sixma.official?igsh=MXJwbGVoZzJmd3B1eQ==" target="_blank"
+            class="social-btn" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://youtube.com/@smknegeri6jember?si=TPSQviVT6DUQEKAC" target="_blank" class="social-btn"
+            title="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-links-block">
+        <div class="footer-col-title">Navigasi</div>
+        <ul class="footer-links">
+          <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+          <li><a href="menu.html"><i class="fas fa-utensils"></i> Semua Menu</a></li>
+          <li><a href="index.html#tentang"><i class="fas fa-info-circle"></i> Tentang Kami</a></li>
+          <li><a href="index.html#kontak"><i class="fas fa-envelope"></i> Hubungi Kami</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-block">
+        <div class="footer-col-title">Sekolah</div>
+        <ul class="footer-links">
+          <li><a href="https://smkn6jember.sch.id" target="_blank"><i class="fas fa-school"></i> smkn6jember.sch.id</a>
+          </li>
+          <li><i class="fas fa-map-marker-alt"></i>RCVP+R39, Jl. PB.Sudirman, Tekoan, Tanggul Kulon, Kec. Tanggul,
+            Kabupaten Jember, Jawa Timur 68155</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-divider"></div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 D'SIX CANTEEN · <a href="https://smkn6jember.sch.id" target="_blank">SMKN 6
+          Jember</a></p>
+      <p class="footer-made">Crafted with purpose — untuk kemudahan warga SMKN 6 Jember</p>
+    </div>
+  </footer>
+
+  <!-- MODAL — bottom sheet -->
+  <div id="orderModal">
+    <div class="modal-box">
+      <div class="modal-handle"></div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div id="modalTitle" class="modal-title">Nama Menu</div>
+      <p class="modal-sub">Lengkapi data untuk memesan via WhatsApp</p>
+
+      <input type="text" id="custName" class="modal-input" placeholder="Nama Lengkap" autocomplete="name">
+      <div class="modal-row">
+        <input type="text" id="custClass" class="modal-input" placeholder="Kelas & Jurusan">
+        <input type="text" id="custRoom" class="modal-input" placeholder="Ruang Teori">
+      </div>
+      <select id="custMethod" class="modal-input">
+        <option value="Ambil Sendiri">Ambil Sendiri</option>
+        <option value="Diantar ke Kelas">Diantar ke Kelas</option>
+      </select>
+
+      <div class="qty-row">
+        <span class="qty-label">Jumlah (Maks 10)</span>
+        <div class="qty-ctrl">
+          <button class="qty-btn" onclick="changeQty(-1)">−</button>
+          <span class="qty-num" id="qtyVal">1</span>
+          <button class="qty-btn plus" onclick="changeQty(1)">+</button>
+        </div>
+      </div>
+
+      <div class="modal-total">
+        <span class="modal-total-label">Total Harga</span>
+        <span class="modal-total-price" id="totalPrice">Rp 0</span>
+      </div>
+
+      <button class="btn-wa" onclick="sendWA()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+          <path
+            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+        </svg>
+        Kirim ke WhatsApp
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // ── HAMBURGER ──
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('open');
+    });
+
+    function closeMobileMenu() {
+      hamburger.classList.remove('active');
+      mobileMenu.classList.remove('open');
+    }
+
+    // Close drawer on outside tap
+    document.addEventListener('click', (e) => {
+      if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+        closeMobileMenu();
+      }
+    });
+
+    // ── MODAL ──
+    let currentMenu = "", currentPrice = 0, qty = 1;
+
+    function openModal(name, price) {
+      currentMenu = name; currentPrice = price; qty = 1;
+      document.getElementById('modalTitle').innerText = name;
+      document.getElementById('orderModal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      updateUI();
+    }
+
+    function closeModal() {
+      document.getElementById('orderModal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Close modal on backdrop tap
+    document.getElementById('orderModal').addEventListener('click', function (e) {
+      if (e.target === this) closeModal();
+    });
+
+    function changeQty(n) {
+      qty = Math.min(10, Math.max(1, qty + n));
+      updateUI();
+    }
+
+    function updateUI() {
+      document.getElementById('qtyVal').innerText = qty;
+      document.getElementById('totalPrice').innerText = "Rp " + (currentPrice * qty).toLocaleString('id-ID');
+    }
+
+    function sendWA() {
+      const name = document.getElementById('custName').value.trim();
+      const kelas = document.getElementById('custClass').value.trim();
+      const ruang = document.getElementById('custRoom').value.trim();
+      const method = document.getElementById('custMethod').value;
+      if (!name || !kelas || !ruang) {alert("Isi dulu datanya yang lengkap!"); return;}
+      const total = currentPrice * qty;
+      const phone = "62895388887008";
+      const msg = `Halo D'SIX CANTEEN!%0A%0ASaya mau pesan:%0A%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%0A*Menu:* ${currentMenu}%0A*Nama:* ${name}%0A*Kelas:* ${kelas}%0A*Lokasi:* ${ruang}%0A*Metode:* ${method}%0A*Jumlah:* ${qty}%0A%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%0A*Total:* Rp ${total.toLocaleString('id-ID')}%0A%0AMohon segera diproses, terima kasih!`;
+      window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
+    }
+
+    // ── SLIDER ──
+    let slideIdx = 0;
+    function goSlide(i) {
+      slideIdx = i;
+      document.getElementById('heroSlider').style.transform = `translateX(-${i * 100}%)`;
+      document.querySelectorAll('.slider-dot').forEach((d, idx) => {
+        d.classList.toggle('active', idx === i);
+      });
+    }
+    setInterval(() => goSlide((slideIdx + 1) % 3), 3500);
+
+    // Touch swipe on hero slider
+    const sliderWrap = document.querySelector('.hero-slider-wrap');
+    let touchStartX = 0;
+    sliderWrap.addEventListener('touchstart', e => {touchStartX = e.touches[0].clientX;}, {passive: true});
+    sliderWrap.addEventListener('touchend', e => {
+      const diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) goSlide(diff > 0 ? (slideIdx + 1) % 3 : (slideIdx + 2) % 3);
+    });
+  </script>
+</body>
+
+</html>

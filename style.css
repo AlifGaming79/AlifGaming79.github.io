@@ -1,0 +1,181 @@
+/* ================= GLOBAL ================= */
+:root {
+  --primary: #E35D23;
+  --secondary: #432818;
+  --bg-soft: #FFF9F5;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg-soft);
+  color: var(--secondary);
+  margin: 0;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #fde3d3;
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 48px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--secondary);
+  position: relative;
+}
+
+.nav-links a:hover {
+  color: var(--primary);
+}
+
+/* underline animasi */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--secondary);
+  transform: scaleX(0);
+  transition: 0.3s;
+}
+
+.nav-links a:hover::after {
+  transform: scaleX(1);
+}
+
+/* ================= HERO ================= */
+.hero {
+  display: flex;
+  padding: 60px 48px;
+  align-items: center;
+  gap: 40px;
+}
+
+.hero-text {
+  width: 50%;
+}
+
+.hero h1 {
+  font-size: 48px;
+}
+
+.hero span {
+  color: var(--primary);
+}
+
+.hero img {
+  width: 100%;
+  border-radius: 20px;
+}
+
+/* ================= MENU ================= */
+.menu {
+  background: white;
+  padding: 60px 48px;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.card {
+  background: white;
+  border: 1px solid #fde3d3;
+  border-radius: 16px;
+  padding: 16px;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid var(--primary);
+  background: none;
+  color: var(--primary);
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: var(--primary);
+  color: white;
+}
+
+/* ================= TENTANG ================= */
+.tentang {
+  background: #fff3eb;
+  padding: 60px;
+  text-align: center;
+}
+
+.tentang-box {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.box {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+}
+
+/* ================= KONTAK ================= */
+.kontak {
+  padding: 60px;
+}
+
+.kontak-box {
+  background: var(--secondary);
+  color: white;
+  border-radius: 20px;
+  padding: 30px;
+  display: flex;
+  gap: 20px;
+}
+
+.kontak input,
+.kontak textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: none;
+}
+
+/* ================= FOOTER ================= */
+footer {
+  text-align: center;
+  padding: 20px;
+  opacity: 0.6;
+}
